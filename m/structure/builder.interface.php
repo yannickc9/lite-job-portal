@@ -12,4 +12,6 @@
  */
 interface Builder {
     //put your code here
+    public abstract function __construct();
+    public abstract function create();
 }
