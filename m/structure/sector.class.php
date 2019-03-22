@@ -11,7 +11,7 @@
  *
  * @author Choni
  */
-class sector {
+class Sector {
     //put your code here
     private $id;
     private $name;
