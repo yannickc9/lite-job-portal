@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  jeu. 21 mars 2019 à 01:45
+-- Généré le :  ven. 22 mars 2019 à 02:52
 -- Version du serveur :  5.7.21
 -- Version de PHP :  5.6.35
 
@@ -127,9 +127,9 @@ CREATE TABLE IF NOT EXISTS `formation` (
   `name` varchar(60) NOT NULL,
   `institute` varchar(60) NOT NULL,
   `document` varchar(5) NOT NULL,
+  `location` varchar(60) NOT NULL,
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
-  `location` varchar(60) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `index_name` (`name`),
   KEY `index_institute` (`institute`),
@@ -146,9 +146,9 @@ DROP TABLE IF EXISTS `hobby`;
 CREATE TABLE IF NOT EXISTS `hobby` (
   `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT,
   `id_cv` mediumint(8) UNSIGNED NOT NULL,
-  `hobby` varchar(60) NOT NULL,
+  `description` varchar(60) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `index_hobby` (`hobby`)
+  KEY `index_hobby` (`description`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -170,8 +170,8 @@ CREATE TABLE IF NOT EXISTS `job_application` (
   `max_experience` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
   `min_salary` mediumint(8) UNSIGNED NOT NULL,
   `location` varchar(60) NOT NULL,
-  `request_datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `update_datetime` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `application_datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_update_datetime` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `index_description` (`description`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -201,11 +201,11 @@ DROP TABLE IF EXISTS `match`;
 CREATE TABLE IF NOT EXISTS `match` (
   `id` mediumint(9) NOT NULL AUTO_INCREMENT,
   `id_offer` mediumint(9) NOT NULL,
-  `id_job_request` mediumint(9) NOT NULL,
+  `id_job_application` mediumint(9) NOT NULL,
   `interview_datetime` datetime NOT NULL,
   `match_datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `unique_offer_job_request` (`id_offer`,`id_job_request`)
+  UNIQUE KEY `unique_offer_job_request` (`id_offer`,`id_job_application`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -227,6 +227,7 @@ CREATE TABLE IF NOT EXISTS `offer` (
   `salary` mediumint(8) UNSIGNED NOT NULL,
   `studies_level` varchar(10) NOT NULL,
   `location` varchar(60) NOT NULL,
+  `post_datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `duration` mediumint(8) UNSIGNED DEFAULT NULL,
   `duration_unit` varchar(1) DEFAULT 'Y',
   PRIMARY KEY (`id`),
@@ -293,11 +294,18 @@ CREATE TABLE IF NOT EXISTS `society` (
   `id_employer` mediumint(8) UNSIGNED NOT NULL,
   `id_sector` tinyint(3) UNSIGNED NOT NULL,
   `name` varchar(40) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `address` varchar(160) NOT NULL,
+  `location` varchar(60) NOT NULL,
+  `telephone` varchar(15) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `website` varchar(255) DEFAULT NULL,
   `max_employees` mediumint(8) UNSIGNED NOT NULL,
   `employees` mediumint(8) UNSIGNED NOT NULL,
   `creation_date` date NOT NULL,
   `type` varchar(4) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `index_description` (`description`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 COMMIT;
 
