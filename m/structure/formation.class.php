@@ -14,6 +14,7 @@
 class Formation {
     //put your code here
     private $id;
+    private $id_cv;
     private $name;
     private $institute;
     private $document;
@@ -21,8 +22,9 @@ class Formation {
     private $start_date;
     private $end_date;
     
-    public function __construct($id, $name, $institute, $document, $location, $start_date, $end_date) {
+    public function __construct($id, $id_cv, $name, $institute, $document, $location, $start_date, $end_date) {
         $this->id = $id;
+        $this->id_cv = $id_cv;
         $this->name = $name;
         $this->institute = $institute;
         $this->document = $document;
@@ -35,14 +37,17 @@ class Formation {
         return $this->id;
     }
 
+    public function getIdCv() {
+        return $this->id_cv;
+    }
+
     public function getName() {
         return $this->name;
     }
 
     public function getInstitute() {
         return $this->institute;
-    }
-    
+    }    
     public function getDocument() {
         return $this->document;
     }
