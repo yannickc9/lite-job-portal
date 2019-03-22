@@ -58,6 +58,30 @@ class Society implements Builder{
         return $this->name;
     }
 
+    public function getDescription() {
+        return $this->description;
+    }
+
+    public function getAddress() {
+        return $this->address;
+    }
+
+    public function getLocation() {
+        return $this->location;
+    }
+
+    public function getTelephone() {
+        return $this->telephone;
+    }
+
+    public function getEmail() {
+        return $this->email;
+    }
+
+    public function getWebsite() {
+        return $this->website;
+    }
+    
     public function getMaxEmployees() {
         return $this->max_employees;
     }
