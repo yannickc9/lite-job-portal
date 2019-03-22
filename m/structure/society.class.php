@@ -11,37 +11,46 @@
  *
  * @author Choni
  */
-class Society {
+class Society implements Builder{
     //put your code here
     private $id;
     private $id_employer;
     private $id_sector;
     private $name;
+    private $description;
+    private $address;
+    private $location;
+    private $telephone;
+    private $email;
+    private $website;
     private $max_employees;
     private $employees;
     private $creation_date;
     private $type;
     
-    public function __construct($id, $id_employer, $id_sector, $name, $max_employees, $employees, $creation_date, $type) {
-        $this->id = $id;
-        $this->id_employer = $id_employer;
-        $this->id_sector = $id_sector;
-        $this->name = $name;
-        $this->max_employees = $max_employees;
-        $this->employees = $employees;
-        $this->creation_date = $creation_date;
-        $this->type = $type;
+    public function __construct() {
+        
     }
 
+    public function create() {
+        
+    }
+
+    public function setAttributes($attributes, $values) {
+        $length = count($attributes);
+        for($i=0; $i<$length; $i++){
+            $this->$attributes[$i] = $values[$i]; 
+        }
+    }
     public function getId() {
         return $this->id;
     }
 
-    public function getId_employer() {
+    public function getIdEmployer() {
         return $this->id_employer;
     }
 
-    public function getId_sector() {
+    public function getIdSector() {
         return $this->id_sector;
     }
 
@@ -49,7 +58,7 @@ class Society {
         return $this->name;
     }
 
-    public function getMax_employees() {
+    public function getMaxEmployees() {
         return $this->max_employees;
     }
 
@@ -57,7 +66,7 @@ class Society {
         return $this->employees;
     }
 
-    public function getCreation_date() {
+    public function getCreationDate() {
         return $this->creation_date;
     }
 
