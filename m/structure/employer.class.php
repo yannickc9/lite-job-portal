@@ -34,7 +34,4 @@ class Employer {
     public function getType() {
         return $this->type;
     }
-
-
-
 }
