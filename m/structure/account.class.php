@@ -41,4 +41,53 @@ class Account implements Builder  {
         }
     }
 
+    public function getId() {
+        return $this->id;
+    }
+
+    public function getFullname() {
+        return $this->fullname;
+    }
+
+    public function getPseudo() {
+        return $this->pseudo;
+    }
+
+    public function getBio() {
+        return $this->bio;
+    }
+
+    public function getTelephone() {
+        return $this->telephone;
+    }
+
+    public function getEmail() {
+        return $this->email;
+    }
+
+    public function getPassword() {
+        return $this->password;
+    }
+
+    public function getAddress() {
+        return $this->address;
+    }
+
+    public function getNationality() {
+        return $this->nationality;
+    }
+
+    public function getBirthday() {
+        return $this->birthday;
+    }
+
+    public function getBirthplace() {
+        return $this->birthplace;
+    }
+
+    public function getLocation() {
+        return $this->location;
+    }
+
+
 }
