@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 22 mars 2019 à 02:52
+-- Généré le :  sam. 23 mars 2019 à 18:14
 -- Version du serveur :  5.7.21
 -- Version de PHP :  5.6.35
 
@@ -64,6 +64,20 @@ CREATE TABLE IF NOT EXISTS `computer_knowledge` (
   `knowledge` varchar(60) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `index_knowledge` (`knowledge`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `contract`
+--
+
+DROP TABLE IF EXISTS `contract`;
+CREATE TABLE IF NOT EXISTS `contract` (
+  `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `type` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_type` (`type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -179,6 +193,32 @@ CREATE TABLE IF NOT EXISTS `job_application` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `job_offer`
+--
+
+DROP TABLE IF EXISTS `job_offer`;
+CREATE TABLE IF NOT EXISTS `job_offer` (
+  `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id_society` mediumint(8) UNSIGNED DEFAULT NULL,
+  `id_employer` mediumint(8) UNSIGNED DEFAULT NULL,
+  `id_profession` mediumint(8) UNSIGNED NOT NULL,
+  `description` varchar(160) NOT NULL,
+  `genre` varchar(3) NOT NULL,
+  `contract_type` varchar(3) NOT NULL,
+  `min_experience` mediumint(8) UNSIGNED DEFAULT NULL,
+  `salary` mediumint(8) UNSIGNED NOT NULL,
+  `studies_level` varchar(10) NOT NULL,
+  `location` varchar(60) NOT NULL,
+  `post_datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `duration` mediumint(8) UNSIGNED DEFAULT NULL,
+  `duration_unit` varchar(1) DEFAULT 'Y',
+  PRIMARY KEY (`id`),
+  KEY `index_description` (`description`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `language`
 --
 
@@ -189,6 +229,34 @@ CREATE TABLE IF NOT EXISTS `language` (
   `iso_code` varchar(2) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `index_language` (`iso_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `level`
+--
+
+DROP TABLE IF EXISTS `level`;
+CREATE TABLE IF NOT EXISTS `level` (
+  `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `diploma` varchar(5) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_diploma` (`diploma`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `location`
+--
+
+DROP TABLE IF EXISTS `location`;
+CREATE TABLE IF NOT EXISTS `location` (
+  `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(60) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -206,32 +274,6 @@ CREATE TABLE IF NOT EXISTS `match` (
   `match_datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_offer_job_request` (`id_offer`,`id_job_application`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `offer`
---
-
-DROP TABLE IF EXISTS `offer`;
-CREATE TABLE IF NOT EXISTS `offer` (
-  `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `id_society` mediumint(8) UNSIGNED DEFAULT NULL,
-  `id_employer` mediumint(8) UNSIGNED DEFAULT NULL,
-  `id_profession` mediumint(8) UNSIGNED NOT NULL,
-  `description` varchar(160) NOT NULL,
-  `genre` varchar(3) NOT NULL,
-  `contract_type` varchar(3) NOT NULL,
-  `min_experience` mediumint(8) UNSIGNED DEFAULT NULL,
-  `salary` mediumint(8) UNSIGNED NOT NULL,
-  `studies_level` varchar(10) NOT NULL,
-  `location` varchar(60) NOT NULL,
-  `post_datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `duration` mediumint(8) UNSIGNED DEFAULT NULL,
-  `duration_unit` varchar(1) DEFAULT 'Y',
-  PRIMARY KEY (`id`),
-  KEY `index_description` (`description`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
