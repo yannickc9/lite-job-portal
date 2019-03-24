@@ -46,19 +46,19 @@
                     <form>
                         <div class="form-group">
                             <label>Nom complet *</label>
-                            <input type="text" name="fullname" class="form-control" placeholder="Prénom Nom Post-nom">
+                            <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Prénom Nom Post-nom">
                         </div>
                         <div class="form-group">
                             <label>Adresse electronique *</label>
-                            <input type="email" name="email" class="form-control" placeholder="Adresse électronique">
+                            <input type="email" id="email" name="email" class="form-control" placeholder="Adresse électronique">
                         </div>
                         <div class="form-group">
                             <label>Mot de passe *</label>
-                            <input type="password" name="password" class="form-control" placeholder="Mot de passe">
+                            <input type="password" id="password" name="password" class="form-control" placeholder="Mot de passe">
                         </div>
                         <div class="form-group">
                             <label>Confirmer le mot de passe *</label>
-                            <input type="password" name="confirm_password" class="form-control" placeholder="Mot de passe">
+                            <input type="password" id="confirm_password" name="confirm_password" class="form-control" placeholder="Mot de passe">
                         </div>
                         <div class="checkbox">
                             <label>
