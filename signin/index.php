@@ -65,7 +65,7 @@
                                 <input type="checkbox"> J'accèpte les conditions d'utilisation et règles de confidentialités
                             </label>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">S'inscrire</button>
+                        <button type="submit" id="btn_submit" class="btn btn-primary btn-flat m-b-30 m-t-30">S'inscrire</button>
                         <div class="register-link m-t-15 text-center">
                             <p>Vous avez déjà un compte ? <a href="../page-login.html"> Connectez-vous ici</a></p>
                         </div>
@@ -79,7 +79,7 @@
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <script src="../vendors/popper.js/dist/umd/popper.min.js"></script>
     <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/main.js"></script>git
 
 
 </body>
