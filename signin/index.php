@@ -45,21 +45,29 @@
                 <div class="login-form">
                     <form>
                         <div class="form-group">
-                            <label>Adresse électronique</label>
-                            <input type="email" class="form-control" placeholder="Votre adresse électronique">
+                            <label>Nom complet *</label>
+                            <input type="text" name="fullname" class="form-control" placeholder="Prénom Nom Post-nom">
                         </div>
                         <div class="form-group">
-                            <label>Mot de passe</label>
-                            <input type="password" class="form-control" placeholder="Votre mot de passe">
+                            <label>Adresse electronique *</label>
+                            <input type="email" name="email" class="form-control" placeholder="Adresse électronique">
+                        </div>
+                        <div class="form-group">
+                            <label>Mot de passe *</label>
+                            <input type="password" name="password" class="form-control" placeholder="Mot de passe">
+                        </div>
+                        <div class="form-group">
+                            <label>Confirmer le mot de passe *</label>
+                            <input type="password" name="confirm_password" class="form-control" placeholder="Mot de passe">
                         </div>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox"> Rester connecté
+                                <input type="checkbox"> J'accèpte les conditions d'utilisation et règles de confidentialités
                             </label>
                         </div>
-                        <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Se connecter</button>
+                        <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">S'inscrire</button>
                         <div class="register-link m-t-15 text-center">
-                            <p>Vous n'avez pas de compte ? <a href="../page-register.html"> Inscrivez-vous ici</a></p>
+                            <p>Vous avez déjà un compte ? <a href="../page-login.html"> Connectez-vous ici</a></p>
                         </div>
                     </form>
                 </div>
