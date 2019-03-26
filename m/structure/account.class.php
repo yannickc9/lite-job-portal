@@ -34,10 +34,9 @@ class Account implements Builder  {
         return $this;
     }
 
-    public function setAttributes($attributes, $values){
-        $length = count($attributes);
-        for($i=0; $i<$length; $i++){
-            $this->$attributes[$i] = $values[$i]; 
+    public function setAttributes($attributes){
+        foreach ($attributes as $attribute => $value) {
+            $this->$attribute = $value;
         }
     }
 
