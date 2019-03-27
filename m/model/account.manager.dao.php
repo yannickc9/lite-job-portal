@@ -30,7 +30,7 @@ class AccountManager extends Manager {
             'fullname' => $account->getFullname(),
             'pseudo' => $account->getPseudo(),
             'email' => $account->getEmail(),
-            'password' => $account->getPassword()
+            'password' => hash('sha256', $account->getPassword(),true)
         ));
     }
 
