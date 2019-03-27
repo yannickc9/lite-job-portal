@@ -25,17 +25,17 @@ class AccountManager extends Manager {
     }
 
     public function generatePseudo(Account $account){
-        $request = $this->pdo->prepare( 'INSERT INTO account(fullname, pseudo, email, password) VALUES(:fullname, :pseudo, :email, :password)');
+        
+    }
+
+    public function save(Account $account){
+        $request = $this->pdo->prepare('INSERT INTO account(fullname, pseudo, email, password) VALUES(:fullname, :pseudo, :email, :password)');
         return $request->execute(array(
             'fullname' => $account->getFullname(),
             'pseudo' => $account->getPseudo(),
             'email' => $account->getEmail(),
             'password' => hash('sha256', $account->getPassword(),true)
-        ));
-    }
-
-    public function save(Account $account){
-
+         ));
     }
 
     public function getAccounts(Sector $sector,Profession $profession,Location $location,Contract $contract,Experience $experience,Level $level){
@@ -43,7 +43,29 @@ class AccountManager extends Manager {
     }
 
     public function connect(Account $account){
-        
+        $request = $this->pdo->prepare('SELECT * FROM account WHERE (email = :email AND password = :password');
+        $request->execute(array(
+            'email' => $account->getEmail(),
+            'password' => hash('sha256', $account->getPassword(),true)
+        ));
+        $response = $request->fetch();
+        if(is_null($response))
+            return null;
+        else
+            return json_encode(array(
+                'id' => $response['id'],
+                'fullname' => $response['fullname'],
+                'pseudo' => $response['pseudo'],
+                'bio' => $response['bio'],
+                'telephone' => $response['telephone'],
+                'email' => $response['email'],
+                'password' => $response['password'],
+                'address' => $response['address'],
+                'nationality' => $response['nationality'],
+                'birthday' => $response['birthday'],
+                'birthplace' => $response['birthplace'],
+                'location' => $response['location']
+            ));
     }
 
     public function update(Account $account){
