@@ -40,6 +40,10 @@ class Account implements Builder  {
         }
     }
 
+    public function createPseudo(){
+        $this->pseudo = strtolower(str_replace(' ', '', $this->fullname));
+    }
+
     public function getId() {
         return $this->id;
     }
