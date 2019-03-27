@@ -5,8 +5,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-require_once('../m/account.class.php');
+require_once('../../db_config/db_params.class.php');
+require_once('../../db_config/connection_manager.class.php');
+require_once('../../m/structure/builder.interface.php');
+require_once('../../m/structure/account.class.php');
+require_once('../../m/model/manager.dao.php');
+require_once('../../m/model/account.manager.dao.php');
 if(isset($_POST['fullname'],$_POST['email'], $_POST['password'])){
     $account = new Account();
     $account->setAttributes(array(
@@ -17,7 +21,8 @@ if(isset($_POST['fullname'],$_POST['email'], $_POST['password'])){
     $account_manager = new AccountManager();
     if($account_manager->validateEmail($account)){
         $account->createPseudo();
-        $account_manager->save($account);
+        $new_account_id = $account_manager->save($account);
+        echo $new_account_id;
     }
     else
         // the email is used
