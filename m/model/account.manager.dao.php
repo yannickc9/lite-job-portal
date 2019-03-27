@@ -25,7 +25,13 @@ class AccountManager extends Manager {
     }
 
     public function generatePseudo(Account $account){
-
+        $request = $this->pdo->prepare( 'INSERT INTO account(fullname, pseudo, email, password) VALUES(:fullname, :pseudo, :email, :password)');
+        return $request->execute(array(
+            'fullname' => $account->getFullname(),
+            'pseudo' => $account->getPseudo(),
+            'email' => $account->getEmail(),
+            'password' => $account->getPassword()
+        ));
     }
 
     public function save(Account $account){
