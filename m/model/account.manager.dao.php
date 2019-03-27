@@ -21,7 +21,7 @@ class AccountManager extends Manager {
         $request = $this->pdo->prepare('SELECT id FROM account WHERE email = :email');
         $request->execute(array('email' => $account->getEmail()));
         $response = $request->fetch();
-        return (is_null($response));
+        return (is_null($response['id']));
     }
 
     public function generatePseudo(Account $account){
@@ -30,12 +30,19 @@ class AccountManager extends Manager {
 
     public function save(Account $account){
         $request = $this->pdo->prepare('INSERT INTO account(fullname, pseudo, email, password) VALUES(:fullname, :pseudo, :email, :password)');
-        return $request->execute(array(
+        $request->execute(array(
             'fullname' => $account->getFullname(),
             'pseudo' => $account->getPseudo(),
             'email' => $account->getEmail(),
             'password' => hash('sha256', $account->getPassword(),true)
-         ));
+        ));
+        if($request){
+            $insert_request = $this->pdo->query('SELECT LAST_INSERT_ID() AS last_id');
+            $insert_request->execute();
+            $insert_response = $insert_request->fetch();
+            return $insert_response['last_id'];
+        }
+        return 0;
     }
 
     public function getAccounts(Sector $sector,Profession $profession,Location $location,Contract $contract,Experience $experience,Level $level){
