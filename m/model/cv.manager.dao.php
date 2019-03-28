@@ -18,7 +18,15 @@ class CVManager extends Manager {
     }
 
     public function save(CV $cv){
-        # code...
+        $request = $this->pdo->prepare('INSERT INTO cv(id_account) VALUES(:id_account)');
+        $request->execute(array('id_account' => $cv->getIdAccount()));
+        if($request){
+            $insert_request = $this->pdo->query('SELECT LAST_INSERT_ID() last_id');
+            $insert_request->execute();
+            $insert_response = $insert_request->fetch();
+            return $insert_response['last_id'];
+        }
+        return null;
     }
 
     public function getCV(Account $account){
