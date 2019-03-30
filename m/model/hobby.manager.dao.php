@@ -18,7 +18,19 @@ class HobbyManager extends Manager{
     }
 
     public function add(CV $cv, Hobby $hobby){
-        # code...
+        $this->pdo->beginTransaction();
+        $request = $this->pdo->prepare('INSERT INTO hobby(id_cv,description) VALUES(:id_cv,:description)');
+        $request->execute(array(
+            'id_cv' => $cv->getIdAccount(),
+            'description' => $hobby->getDescription()
+        ));
+        $request = $this->pdo->prepare('UPDATE cv SET last_update_datetime = NOW() WHERE id_account = :id_account');
+        $request->execute(array(
+            'id_account' => $cv->getIdAccount()
+        ));
+        if(!$this->pdo->commit())
+            return !$this->pdo->rollBack();
+        return true;
     }
 
     public function update(CV $cv, Hobby $hobby){
