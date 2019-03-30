@@ -19,7 +19,12 @@ class LevelManager extends Manager{
 
 
     public function add(CV $cv, Level $level){
-        # code...
+        $request = $this->pdo->prepare( 'INSERT INTO level(id_cv,diploma,domain) VALUES(:id_cv,:diploma,:domain)');
+        return $request->execute(array(
+            'id_cv' => $cv->getId(),
+            'diploma' => $level->getDiploma(),
+            'domain' => $level->getDomain()      
+        ));
     }
 
     public function update(CV $cv, Level $level){
