@@ -14,14 +14,16 @@
 class Experience {
     //put your code here
     private $id;
+    private $id_cv;
     private $society;
     private $type;
     private $description;
     private $start_date;
     private $end_date;
     
-    public function __construct($id, $society, $type, $description, $start_date, $end_date) {
+    public function __construct($id, $id_cv, $society, $type, $description, $start_date, $end_date) {
         $this->id = $id;
+        $this->id_cv = $id_cv;
         $this->society = $society;
         $this->type = $type;
         $this->description = $description;
@@ -31,6 +33,10 @@ class Experience {
     
     public function getId() {
         return $this->id;
+    }
+
+    public function getIdCV(){
+        return $this->id_cv;
     }
 
     public function getSociety() {
