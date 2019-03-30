@@ -28,7 +28,7 @@ class ExperienceManager extends Manager{
             'start_date' => $experience->getStartDate(),
             'end_date' => $experience->getEndDate()
         ));
-        $request = $this->pdo->prepare('UPDATE cv SET last_update_datetime WHERE id_account = :id_account');
+        $request = $this->pdo->prepare('UPDATE cv SET last_update_datetime = NOW() WHERE id_account = :id_account');
         $request->execute(array(
             'id_account' => $cv->getIdAccount()
         ));
