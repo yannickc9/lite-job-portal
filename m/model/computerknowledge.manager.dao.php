@@ -18,7 +18,7 @@ class ComputerKnowledgeManager extends Manager{
     }
 
     public function add(CV $cv, ComputerKnowledge $computer_knowledge){
-        # code...
+        
     }
 
     public function remove(CV $cv, ComputerKnowledge $computer_knowledge){

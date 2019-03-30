@@ -21,7 +21,7 @@ class LanguageManager extends Manager{
         $this->pdo->beginTransaction();
         $request = $this->pdo->prepare('INSERT INTO language(id_cv,iso_code) VALUES(:id_cv,:iso_code)');
         $request->execute(array(
-            'id_cv' => $cv->getIdAccount(),
+            'id_cv' => $cv->getId(),
             'iso_code' => $language->getIsoCode()
         ));
         $request = $this->pdo->prepare('UPDATE cv SET last_update_datetime = NOW() WHERE id_account = :id_account');

@@ -22,7 +22,7 @@ class LevelManager extends Manager{
         $this->pdo->beginTransaction();
         $request = $this->pdo->prepare( 'INSERT INTO level(id_cv,diploma,domain) VALUES(:id_cv,:diploma,:domain)');
         $request->execute(array(
-            'id_cv' => $cv->getIdAccount(),
+            'id_cv' => $cv->getId(),
             'diploma' => $level->getDiploma(),
             'domain' => $level->getDomain()      
         ));

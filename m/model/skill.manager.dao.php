@@ -22,7 +22,7 @@ class SkillManager extends Manager{
         $this->pdo->beginTransaction();
         $request = $this->pdo->prepare('INSERT INTO level(id_cv,description) VALUES(:id_cv,:description)');
         $request->execute(array(
-            'id_cv' => $cv->getIdAccount(),
+            'id_cv' => $cv->getId(),
             'description' => $skill->getDescription()
         ));
         $request = $this->pdo->prepare('UPDATE cv SET last_update_datetime = NOW() WHERE id_account = :id_account');
