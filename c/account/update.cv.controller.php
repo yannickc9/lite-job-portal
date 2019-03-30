@@ -62,7 +62,17 @@ if(isset($_POST['id_account'],$_POST['key'])){
             crp::decrypte(htmlspecialchars($_POST['end_date']),$key)
         );
         $experience_manager = new ExperienceManager();
-        if($experience_manager->add($cv, $experience))
+        if($experience_manager->add($cv, $experience))echo 1;
+    }
+    // new skill
+    else if(isset($_POST['description'])){
+         $skill = new Skill(
+            null,
+            $cv->getId(),
+            crp::decrypte(htmlspecialchars($_POST['description']),$key)
+        );
+        $skill_manager = new SkillManager();
+        if($skill_manager->add($cv, $skill))
             echo 1;
     }
 
