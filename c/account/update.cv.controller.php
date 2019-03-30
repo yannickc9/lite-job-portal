@@ -95,7 +95,18 @@ if(isset($_POST['id_account'],$_POST['key'])){
             crp::decrypte(htmlspecialchars($_POST['description']),$key)
         );
         $hobby_manager = new HobbyManager();
-        if($hobby_manager->add($cv, $hobby))
+        if($hobby_manager->add($cv, $hobby))echo 1;
+    }
+    // new computer knowledge
+    else if(isset($_POST['type'],$_POST['knowledge'])){
+        $computer_knowledge = new ComputerKnowledge(
+            null,
+            $cv->getId(),
+            crp::decrypte(htmlspecialchars($_POST['type']),$key),
+            crp::decrypte(htmlspecialchars($_POST['knowledge']),$key)
+        );
+        $computer_knowledge_manager = new ComputerKnowledgeManager();
+        if($computer_knowledge_manager->add($cv, $computer_knowledge))
             echo 1;
     }
     else
