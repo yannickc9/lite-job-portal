@@ -76,6 +76,32 @@ class AccountManager extends Manager {
     }
 
     public function update(Account $account){
+        $sql = 'UPDATE account SET ';
+        $sql .= (!is_null($account->getFullname())) ? 'fullname = :fullname' : '';
+        $sql .= (!is_null($account->getPseudo())) ? 'pseudo = :pseudo' : '';
+        $sql .= (!is_null($account->getBio())) ? 'bio = :bio' : '';
+        $sql .= (!is_null($account->getTelephone())) ? 'telephone = :telephone' : '';
+        $sql .= (!is_null($account->getEmail())) ? 'email = :email' : '';
+        $sql .= (!is_null($account->getAddress())) ? 'address = :address' : '';
+        $sql .= (!is_null($account->getNationality())) ? 'nationality = :nationality' : '';
+        $sql .= (!is_null($account->getBirthday())) ? 'birthday = :birthday' : '';
+        $sql .= (!is_null($account->getBirthplace())) ? 'birthplace = :birthplace' : '';
+        $sql .= (!is_null($account->getLocation())) ? 'location = :location' : '';
+        $sql .= 'WHERE id = :id';
         
+        $request = $this->pdo->prepare($sql);
+        $request->execute(array(
+            'id' => $account->getId(),
+            'fullname' => $account->getFullname(),
+            'pseudo' => $account->getPseudo(),
+            'bio' => $account->getBio(),
+            'telephone' => $account->getTelephone(),
+            'email' => $account->getEmail(),
+            'address' => $account->getAddress(),
+            'nationality' => $account->getNationality(),
+            'birthday' => $account->getBirthday(),
+            'birthplace' => $account->getBirthplace(),
+            'location' => $account->getLocation()
+        ));
     }
 }
