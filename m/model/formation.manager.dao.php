@@ -20,7 +20,7 @@ class FormationManager extends Manager{
     
     public function add(CV $cv, Formation $formation){
         $request = $this->pdo->prepare( 'INSERT INTO formation(id_cv,name,institute,document,location,start_date,end_date) VALUES(:id_cv,:name,:institute,:document,:location,:start_date,:end_date)');
-        $request->execute(array(
+        return $request->execute(array(
             'id_cv' => $cv->getIdAccount(),
             'name' => $formation->getName(),
             'institute' => $formation->getInstitute(),
