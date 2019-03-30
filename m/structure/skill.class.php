@@ -27,7 +27,7 @@ class Skill {
         return $this->id;
     }
 
-    public function getId_cv() {
+    public function getIdCv() {
         return $this->id_cv;
     }
 
