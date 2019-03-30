@@ -20,8 +20,7 @@ class JobApplication implements Builder{
     private $description;
     private $duration;
     private $duration_unit;
-    private $min_experience;
-    private $max_experience;
+    private $experience;
     private $min_salary;
     private $location;
     private $application_datetime;
@@ -71,12 +70,8 @@ class JobApplication implements Builder{
         return $this->duration_unit;
     }
 
-    public function getMinExperience() {
-        return $this->min_experience;
-    }
-
-    public function getMaxExperience() {
-        return $this->max_experience;
+    public function getExperience() {
+        return $this->experience;
     }
 
     public function getMinSalary() {
