@@ -32,6 +32,22 @@ if(isset($_POST['id_account'],$_POST['key'])){
         );
         $level_manager = new LevelManager();
         if($formation_manager->add($cv,$level))
+            echo 1;    
+    }
+    // new formation
+    else if(isset($_POST['name'],$_POST['institute'],$_POST['document'],$_POST['location'],$_POST['start_date'],$_POST['end_date'])){
+        $formation = new Formation(
+            null,
+            $cv->getId(),
+            crp::decrypte(htmlspecialchars($_POST['name']),$key),
+            crp::decrypte(htmlspecialchars($_POST['institute']),$key),
+            crp::decrypte(htmlspecialchars($_POST['document']),$key),
+            crp::decrypte(htmlspecialchars($_POST['location']),$key),
+            crp::decrypte(htmlspecialchars($_POST['start_date']),$key),
+            crp::decrypte(htmlspecialchars($_POST['end_date']),$key)
+        );
+        $formation_manager = new FormationManager();
+        if($formation_manager->add($cv,$formation))
             echo 1;
     }
     else
