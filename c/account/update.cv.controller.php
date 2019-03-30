@@ -72,10 +72,19 @@ if(isset($_POST['id_account'],$_POST['key'])){
             crp::decrypte(htmlspecialchars($_POST['description']),$key)
         );
         $skill_manager = new SkillManager();
-        if($skill_manager->add($cv, $skill))
+        if($skill_manager->add($cv, $skill))echo 1;
+    }
+    // new language
+    else if(isset($_POST['iso_code'] )){
+        $language = new Language(
+            null,
+            $cv->getId(),
+            crp::decrypte(htmlspecialchars($_POST['iso_code']),$key)
+        );
+        $language_manager = new LanguageManager();
+        if($language_manager->add($cv, $language))
             echo 1;
     }
-
     else
         echo 0;
 } else
