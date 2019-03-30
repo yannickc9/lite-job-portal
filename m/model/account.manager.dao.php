@@ -45,6 +45,29 @@ class AccountManager extends Manager {
         return 0;
     }
 
+    public function getAccountById($account_id){
+        $request = $this->pdo->prepare('SELECT * FROM account WHERE id = :id');
+        $request->execute(array('id' => $account_id));
+        $response = $request->fetch();
+        if(is_null( $response))
+            return null;
+        else
+            return json_encode(array(
+                'id' => $response['id'],
+                'fullname' => $response['fullname'],
+                'pseudo' => $response['pseudo'],
+                'bio' => $response['bio'],
+                'telephone' => $response['telephone'],
+                'email' => $response['email'],
+                'password' => $response['password'],
+                'address' => $response['address'],
+                'nationality' => $response['nationality'],
+                'birthday' => $response['birthday'],
+                'birthplace' => $response['birthplace'],
+                'location' => $response['location']
+            ));
+    }
+
     public function getAccounts(Sector $sector,Profession $profession,Location $location,Contract $contract,Experience $experience,Level $level){
         
     }
