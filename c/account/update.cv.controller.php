@@ -50,6 +50,22 @@ if(isset($_POST['id_account'],$_POST['key'])){
         if($formation_manager->add($cv,$formation))
             echo 1;
     }
+    // new experience
+    else if(isset($_POST['society'],$_POST['type'],$_POST['description'],$_POST['start_date'],$_POST['end_date'])){
+         $experience = new Experience(
+            null,
+            $cv->getId(),
+            crp::decrypte(htmlspecialchars($_POST['society']),$key),
+            crp::decrypte(htmlspecialchars($_POST['type']),$key),
+            crp::decrypte(htmlspecialchars($_POST['description']),$key),
+            crp::decrypte(htmlspecialchars($_POST['start_date']),$key),
+            crp::decrypte(htmlspecialchars($_POST['end_date']),$key)
+        );
+        $experience_manager = new ExperienceManager();
+        if($experience_manager->add($cv, $experience))
+            echo 1;
+    }
+
     else
         echo 0;
 } else
