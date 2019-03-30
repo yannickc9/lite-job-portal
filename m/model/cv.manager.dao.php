@@ -30,7 +30,12 @@ class CVManager extends Manager {
     }
 
     public function getCV(Account $account){
-        // return $cv;
+        $request = $this->pdo->prepare('SELECT * FROM cv WHERE id_account = :id_account');
+        $request->execute(array('id_account' => $account->getId()));
+        $response = $request->fetch();
+        if($request)
+            return new CV($response ['id'],$response ['id_account'],$response ['creation_datetime'],$response ['last_update_datetime']);
+        return null;
     }
 
     public function remove(CV $cv){
