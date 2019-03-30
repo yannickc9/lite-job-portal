@@ -18,7 +18,19 @@ class JobApplicationManager extends Manager {
     }
 
     public function save(JobApplication $job_application){
-        # code...
+        $this->pdo->beginTransaction();
+        $request = $this->pdo->prepare( 'INSERT INTO job_application(id_account,id_profession,type,description,duration,duration_unit,experience,min_salary,location) VALUES(:id_account,:id_profession,:type,:description,:duration,:duration_unit,:experience,:min_salary,:location)');
+        return $request->execute(array(
+            'id_account' => $job_application->getIdAccount(),
+            'id_profession' => $job_application->getIdProfession(),
+            'type' => $job_application->getType(),
+            'description' => $job_application->getDescription(),
+            'duration' => $job_application->getDuration(),
+            'duration_unit' => $job_application->getDurationUnit(),
+            'experience' => $job_application->getExperience(),
+            'min_salary' => $job_application->getMinSalary(),
+            'location' => $job_application->getLocation()
+        ));
     }
 
     public function getJobApplications(Sector $sector,Profession $profession,Location $location,Contract $contract,Experience $experience,Level $level){
