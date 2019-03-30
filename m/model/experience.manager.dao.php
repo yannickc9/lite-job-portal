@@ -18,7 +18,15 @@ class ExperienceManager extends Manager{
     }
 
     public function add(CV $cv, Experience $experience){
-        # code...
+        $request = $this->pdo->prepare( 'INSERT INTO experience(id_cv,society,type,description,start_date,end_date) VALUES(:id_cv,:society,:type,:description,:start_date,:end_date)');
+        return $request->execute(array(
+            'id_cv' => $cv->getId(),
+            'society' => $experience->getSociety(),
+            'type' => $experience->getSociety(),
+            'description' => $experience->getDescription(),
+            'start_date' => $experience->getStartDate(),
+            'end_date' => $experience->getEndDate()
+        ));
     }
 
     public function update(CV $cv, Experience $experience){
