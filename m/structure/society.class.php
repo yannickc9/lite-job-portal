@@ -23,7 +23,6 @@ class Society implements Builder{
     private $telephone;
     private $email;
     private $website;
-    private $max_employees;
     private $employees;
     private $creation_date;
     private $type;
@@ -82,10 +81,6 @@ class Society implements Builder{
         return $this->website;
     }
     
-    public function getMaxEmployees() {
-        return $this->max_employees;
-    }
-
     public function getEmployees() {
         return $this->employees;
     }
