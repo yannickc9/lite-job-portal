@@ -45,6 +45,14 @@ class AccountManager extends Manager {
         return 0;
     }
 
+    public function saveAsEmployer(Account $account,string $type){
+        $request = $this->pdo->prepare( 'INSERT INTO employer(id_account,type) VALUES(:id_account,:type)');
+        return $request->execute(array(
+            'id_account' => $account->getId(),
+            'type' => $type
+        ));
+    }
+
     public function getAccountById($account_id){
         $request = $this->pdo->prepare('SELECT * FROM account WHERE id = :id');
         $request->execute(array('id' => $account_id));
