@@ -16,6 +16,11 @@ class Language {
     private $id;
     private $id_cv;
     private $iso_code;
+
+    const ISO_CODE = array(
+        'en' => 'Anglais',
+        'fr' => 'Français'
+    );
     
     public function __construct($id, $id_cv, $iso_code) {
         $this->id = $id;
