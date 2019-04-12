@@ -19,7 +19,7 @@ class ComputerKnowledge {
     private $type;
     private $knowledge;
 
-    public const TYPES = array(
+    const TYPES = array(
         "L" => "Language de programmation",
         "S" => "Logiciel",
         "N" => "Configuration de matériel réseau",
