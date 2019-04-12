@@ -35,11 +35,38 @@ class EmployerManager extends Manager{
         ));
     }
 
-    public function update(Society $society){
+    public function getEmployers(Sector $sector,Location $location){
+       $sql = "SELECT E.* FROM employer E INNER JOIN society S ON S.id_employer = E.id " ; 
+        if(is_null ($sector) && is_null($location)){
+             $request = $this->pdo->query($sql);
+            $request->execute();
+        } 
+        else{
+            $filters = array();
+            $sql .= "WHERE ";
+            if(!is_null($sector)){
+                $sql .= " id_sector = :id_sector";
+                array_merge($filters,array('id_sector' => $sector->getId()));
+            }
+            if(!is_null($location)){
+                $sql .= is_null($sector) ? "" : "AND ";
+                $sql .= "location = :location";
+                array_merge($filters,array('location' => $location->getName()));
+            }
+            $request = $this->pdo->prepare($sql);
+            $request->execute($filters);
+        }
+        $employers = array();
+        while($employer = $request->fetch(PDO::FETCH_OBJ))
+            $employers[] = $employer;
+        return $employers;
+    }
+
+    public function update(Employer $employer){
         # code...
     }
 
-    public function remove(Society $society){
+    public function remove(Employer $employer){
         # code...
     }
 }
