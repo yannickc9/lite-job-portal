@@ -17,6 +17,16 @@ class ExperienceManager extends Manager{
         parent::__construct();
     }
 
+    public function getExperienceDurations(){
+        $request = $this->pdo->prepare('SELECT * FROM experience_duration');
+        $request->execute();
+        $experience_durations = array();
+        while($e = $request->fetch())
+            $experience_durations[] = new ExperienceDuration($e['id'],$e['duration'],utf8_encode($e['label']));
+        $request->closeCursor();
+        return $experience_durations;
+    }
+
     public function add(CV $cv, Experience $experience){
         $this->pdo->beginTransaction();
         $request = $this->pdo->prepare( 'INSERT INTO experience(id_cv,society,type,description,start_date,end_date) VALUES(:id_cv,:society,:type,:description,:start_date,:end_date)');
