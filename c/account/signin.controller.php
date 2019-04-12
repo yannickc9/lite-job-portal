@@ -11,18 +11,26 @@ require_once('../../m/structure/builder.interface.php');
 require_once('../../m/structure/account.class.php');
 require_once('../../m/model/manager.dao.php');
 require_once('../../m/model/account.manager.dao.php');
-if(isset($_POST['fullname'],$_POST['email'], $_POST['password'])){
+
+require_once('../../ext/php/crp.php');
+
+if(isset($_POST['fullname'],$_POST['email'],$_POST['password'],$_POST['key'])){
+    $key = htmlspecialchars($_POST['key']);
     $account = new Account();
     $account->setAttributes(array(
-        'fullname' => htmlspecialchars($_POST['fullname']),
-        'email' => htmlspecialchars($_POST['email']),
-        'password' => htmlspecialchars($_POST['password']),
+        'fullname' => crp::decrypte(htmlspecialchars($_POST['fullname']),$key),
+        'email' => crp::decrypte(htmlspecialchars($_POST['email']),$key),
+        'password' => crp::decrypte(htmlspecialchars($_POST['password']),$key)
     ));
     $account_manager = new AccountManager();
     if($account_manager->validateEmail($account)){
         $account->createPseudo();
         $new_account_id = $account_manager->save($account);
-        echo $new_account_id;
+        echo json_encode(array(
+            'id' => $new_account_id,
+            'login' => $account->getEmail(),
+            'password' => $account->getPassword()
+        ));
     }
     else
         // the email is used
