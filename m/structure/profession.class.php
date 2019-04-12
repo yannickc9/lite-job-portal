@@ -29,7 +29,7 @@ class Profession {
         return $this->id;
     }
 
-    public function getId_sector() {
+    public function getIdSector() {
         return $this->id_sector;
     }
 
