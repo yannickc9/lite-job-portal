@@ -19,12 +19,14 @@ class ComputerKnowledge {
     private $type;
     private $knowledge;
 
-    public static $LANGUAGE = "PL";
-    public static $SOFTWARE = "SS";
-    public static $NETWORK_MATERIAL_CONFIGURATION = "CN";
-    public static $DATABASE_ADMINISTRATION = "DA";
-    public static $SYSTEM_ADMINISTRATION = "SA";
-    public static $OPERATING_SYSTEM = "OS";
+    public static $types = array(
+        "L" => "Language de programmation",
+        "S" => "Logiciel",
+        "N" => "Configuration de matériel réseau",
+        "D" => "Administration de base de données",
+        "A" => "Administration systèmes",
+        "O" => "Système d'exploitation"
+    );
 
     public function __construct($id, $id_cv, $type, $knowledge) {
         $this->id = $id;
